@@ -4,10 +4,15 @@ Open source android application that help users to earn new positive habits in h
 #Libraries
 
 1 - ViewModel 
+
 2 - LiveData
+
 3 - Coroutines
+
 4 - Room
+
 5 - Dagger2-Hilt
+
 6 - RecyclerView
 
 
