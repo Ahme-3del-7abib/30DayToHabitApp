@@ -8,12 +8,11 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.simplx.apps.a30daystohabit.R
+import com.simplx.apps.a30daystohabit.utils.HabitUtils
 import kotlinx.android.synthetic.main.activity_add_habit.*
 
 class AddHabitActivity : AppCompatActivity() {
 
-
-    lateinit var animation: AlphaAnimation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +29,7 @@ class AddHabitActivity : AppCompatActivity() {
     }
 
     private fun setView() {
-        animation = AlphaAnimation(0.0f, 1.0f)
-        animation.duration = 1500
+        title_toolbar.typeface = HabitUtils.getTypeFace(this)
     }
 
     private fun onRadioButtonClicked(key: String) {
@@ -39,7 +37,7 @@ class AddHabitActivity : AppCompatActivity() {
         when (key) {
             "Yes" -> {
                 time_layout_id.visibility = View.VISIBLE
-                time_layout_id.startAnimation(animation)
+                HabitUtils.setAnimation(time_layout_id)
             }
             "No" -> {
                 time_layout_id.visibility = View.GONE

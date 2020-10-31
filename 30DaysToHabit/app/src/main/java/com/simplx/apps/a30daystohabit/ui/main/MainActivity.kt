@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.simplx.apps.a30daystohabit.R
 import com.simplx.apps.a30daystohabit.ui.add.AddHabitActivity
+import com.simplx.apps.a30daystohabit.ui.trace.TracerActivity
+import com.simplx.apps.a30daystohabit.utils.HabitUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,8 +16,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setView()
+
         add_habit.setOnClickListener {
-            startActivity(Intent(this, AddHabitActivity::class.java))
+            startActivity(Intent(this, TracerActivity::class.java))
         }
+    }
+
+    private fun setView() {
+        title_toolbar.typeface = HabitUtils.getTypeFace(this)
     }
 }
