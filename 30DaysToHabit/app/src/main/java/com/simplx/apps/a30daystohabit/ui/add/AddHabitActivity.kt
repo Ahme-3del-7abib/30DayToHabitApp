@@ -20,8 +20,7 @@ class AddHabitActivity : AppCompatActivity() {
 
         setView()
 
-        radio_group_id.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
-            var id = group.checkedRadioButtonId
+        radio_group_id.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { _, checkedId ->
             var checked: RadioButton = findViewById(checkedId)
             onRadioButtonClicked(checked.text.toString())
 
