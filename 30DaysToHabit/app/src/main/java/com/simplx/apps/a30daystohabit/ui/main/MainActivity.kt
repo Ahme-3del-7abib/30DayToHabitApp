@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.simplx.apps.a30daystohabit.R
+import com.simplx.apps.a30daystohabit.ui.add.AddHabitActivity
 import com.simplx.apps.a30daystohabit.ui.trace.TracerActivity
 import com.simplx.apps.a30daystohabit.utils.HabitUtils
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setView()
 
         add_habit.setOnClickListener {
-            startActivity(Intent(this, TracerActivity::class.java))
+            startActivity(Intent(this, AddHabitActivity::class.java))
         }
     }
 

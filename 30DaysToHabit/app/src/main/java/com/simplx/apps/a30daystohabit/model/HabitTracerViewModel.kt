@@ -1,20 +1,20 @@
 package com.simplx.apps.a30daystohabit.model
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.ViewModel
 import com.simplx.apps.a30daystohabit.pojo.Days
 import com.simplx.apps.a30daystohabit.pojo.Habit
 import com.simplx.apps.a30daystohabit.repository.HabitTracerRepository
 import com.simplx.apps.a30daystohabit.room.ApplicationDataBase
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class HabitTracerViewModel(application: Application) : AndroidViewModel(application) {
+class HabitTracerViewModel(application: Application) : ViewModel() {
 
     private var repository: HabitTracerRepository
-    private val habitList: LiveData<List<Habit>>
+    var habitList: LiveData<List<Habit>>? = null
 
     init {
         val habitDatabase = ApplicationDataBase.getInstance(application).habitApplicationDao()
@@ -22,24 +22,23 @@ class HabitTracerViewModel(application: Application) : AndroidViewModel(applicat
         habitList = repository.getAllHabits()
     }
 
-    fun insertHabit(habit: Habit) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertHabit(habit: Habit) = GlobalScope.launch(IO) {
         repository.insertHabit(habit)
     }
 
-    fun updateHabit(habit: Habit) = viewModelScope.launch(Dispatchers.IO) {
+    fun updateHabit(habit: Habit) = GlobalScope.launch(IO) {
         repository.updateHabit(habit)
     }
 
-    fun deleteHabit(id: Int) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteHabit(id: Int) = GlobalScope.launch(IO) {
         repository.deleteHabit(id)
     }
 
-
-    fun insertDay(days: Days) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertDay(days: Days) = GlobalScope.launch(IO) {
         repository.insertDay(days)
     }
 
-    fun deleteDay(id: Int) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteDay(id: Int) = GlobalScope.launch(IO) {
         repository.deleteDays(id)
     }
 }

@@ -7,28 +7,27 @@ import com.simplx.apps.a30daystohabit.room.HabitAppDao
 
 class HabitTracerRepository(private val appDao: HabitAppDao) {
 
-
-    public suspend fun insertHabit(habit: Habit) {
+    suspend fun insertHabit(habit: Habit) {
         appDao.insertHabit(habit)
     }
 
-    public suspend fun updateHabit(habit: Habit) {
+    suspend fun updateHabit(habit: Habit) {
         appDao.updateHabit(habit)
     }
 
-    public suspend fun deleteHabit(id: Int) {
+    suspend fun deleteHabit(id: Int) {
         appDao.deleteHabit(id)
     }
 
-    public fun getAllHabits(): LiveData<List<Habit>> {
+    fun getAllHabits(): LiveData<List<Habit>> {
         return appDao.getAllActivities()
     }
 
-    public suspend fun insertDay(days: Days) {
+    suspend fun insertDay(days: Days) {
         appDao.insertDay(days)
     }
 
-    public suspend fun deleteDays(id: Int) {
+    suspend fun deleteDays(id: Int) {
         appDao.deleteDay(id)
     }
 
