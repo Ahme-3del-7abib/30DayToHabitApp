@@ -9,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.30DaysToHabit">
-        <activity android:name=".ui.trace.TracerActivity"></activity>
-        <activity android:name=".ui.add.AddHabitActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity
+            android:name=".ui.trace.TracerActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".ui.add.AddHabitActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

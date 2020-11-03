@@ -31,21 +31,6 @@
                 android:textSize="@dimen/_20sdp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:layout_weight="0.2"
-                android:elevation="@dimen/_40sdp"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/add_habit"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:src="@drawable/ic_baseline_post_add_24" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -66,5 +51,18 @@
         android:layout_below="@+id/toolBar"
         android:layout_margin="@dimen/_8sdp"
         android:visibility="invisible" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_habit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_16sdp"
+        android:backgroundTint="@android:color/white"
+        android:src="@drawable/ic_baseline_post_add_24"
+        app:borderWidth="0dp" />
+
 
 </RelativeLayout>

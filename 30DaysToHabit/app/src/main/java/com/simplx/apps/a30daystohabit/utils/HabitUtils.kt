@@ -5,10 +5,12 @@ import android.graphics.Typeface
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class HabitUtils {
 
     companion object {
+
         fun showToast(context: Context, msg: String) {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
         }
