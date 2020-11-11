@@ -12,8 +12,6 @@ Open source android application that help users to earn new positive habits in h
 
 4 - Room
 
-5 - Dagger2-Hilt
-
-6 - RecyclerView
+5 - RecyclerView
 
 
