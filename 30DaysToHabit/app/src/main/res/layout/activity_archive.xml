@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.archive.ArchiveActivity">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
@@ -20,56 +21,54 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/title_toolbar"
+                android:id="@+id/title_Archive_toolbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingTop="@dimen/_16sdp"
                 android:paddingBottom="@dimen/_16sdp"
-                android:text="30 Days To Habit"
+                android:text="Archive"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_20sdp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/arch_Btn"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_16sdp"
-                android:src="@drawable/ic_baseline_archive_24" />
 
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/emptyView"
+
+    <LinearLayout
+        android:id="@+id/archiveEmptyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/habits_image"
-        android:visibility="visible" />
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/archive_icon" />
+
+        <TextView
+            android:id="@+id/arch_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You Archive Is Empty !!"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+        android:id="@+id/archiveRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolBar"
         android:layout_margin="@dimen/_8sdp"
         android:visibility="invisible" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_habit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/_16sdp"
-        android:backgroundTint="@android:color/white"
-        android:src="@drawable/ic_baseline_post_add_24"
-        app:borderWidth="0dp" />
-
 
 </RelativeLayout>

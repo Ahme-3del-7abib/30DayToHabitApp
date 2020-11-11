@@ -29,6 +29,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/day_one_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
@@ -40,44 +41,52 @@
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_two_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="2"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_three_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="3"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_four_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="4"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_five_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="5"
                     android:textColor="@android:color/black"
@@ -94,55 +103,65 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/day_six_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="6"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_seven_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="7"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_eight_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="8"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_nine_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="9"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_ten_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="10"
                     android:textColor="@android:color/black"
@@ -159,61 +178,69 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/day_eleven_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="11"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_tweleve_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="12"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_thirteen_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="13"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_fourteen_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="14"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_fifteen_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="15"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -224,55 +251,65 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/day_sixteen_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="16"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_seventeen_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="17"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_eighteen_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="18"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_nineteen_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="19"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="20"
                     android:textColor="@android:color/black"
@@ -288,55 +325,65 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/day_twenty_one_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="21"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_two_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="22"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_three_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="23"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_four_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="24"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_five_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="25"
                     android:textColor="@android:color/black"
@@ -352,60 +399,69 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/day_twenty_six_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="26"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_seven_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="27"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_eight_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="28"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_twenty_nine_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="29"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <TextView
+                    android:id="@+id/day_thirty_id"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:background="@drawable/day_background_white"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="30"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_15sdp" />
-
 
             </LinearLayout>
 
@@ -420,14 +476,109 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_19sdp"
-            android:text="Achievement : 50%"
-            android:textColor="#CD5C5C"
-            android:textSize="@dimen/_15sdp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ac_Tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Achievement : "
+                android:textColor="#CD5C5C"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/achievementNumId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textColor="#CD5C5C"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="#CD5C5C"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_19sdp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:background="@drawable/day_back_groundgreen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:text="Success Days : "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/successDayNumId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:text="21 "
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:background="@drawable/day_background_red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:text="Failed Days : "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/failedDaysNumId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:text="9 "
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

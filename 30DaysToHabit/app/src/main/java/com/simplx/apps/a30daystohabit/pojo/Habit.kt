@@ -21,8 +21,5 @@ data class Habit(
     val notification: String,
 
     @ColumnInfo(name = "time")
-    val time: String,
-
-    @ColumnInfo(name = "progress")
-    val progress: Int
+    val time: String
 )

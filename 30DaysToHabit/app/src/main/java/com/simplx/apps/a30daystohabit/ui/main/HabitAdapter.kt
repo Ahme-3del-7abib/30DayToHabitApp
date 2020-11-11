@@ -1,15 +1,19 @@
 package com.simplx.apps.a30daystohabit.ui.main
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.simplx.apps.a30daystohabit.R
+import com.simplx.apps.a30daystohabit.pojo.Days
 import com.simplx.apps.a30daystohabit.pojo.Habit
+import com.simplx.apps.a30daystohabit.ui.add.AddHabitActivity
 import com.simplx.apps.a30daystohabit.utils.HabitUtils
 
 class HabitAdapter(
@@ -19,7 +23,6 @@ class HabitAdapter(
     RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
 
     private var habitList: List<Habit> = ArrayList()
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
         return HabitViewHolder(
@@ -49,6 +52,15 @@ class HabitAdapter(
 
         holder.settingBtn?.setOnClickListener {
 
+            context.startActivity(
+                Intent(context, AddHabitActivity::class.java)
+                    .putExtra("Button", "update")
+                    .putExtra("id", habitList[position].ID)
+                    .putExtra("name", habitList[position].name)
+                    .putExtra("desc", habitList[position].desc)
+                    .putExtra("notification", habitList[position].notification)
+                    .putExtra("time", habitList[position].time)
+            )
         }
     }
 
@@ -74,7 +86,6 @@ class HabitAdapter(
         override fun onClick(v: View?) {
             onHabitClickListener?.onHabitClick(adapterPosition)
         }
-
     }
 
     interface OnHabitClickListener {

@@ -6,14 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.add.AddHabitActivity">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple_200"
         android:elevation="@dimen/_4sdp">
-
 
         <TextView
             android:id="@+id/title_toolbar"

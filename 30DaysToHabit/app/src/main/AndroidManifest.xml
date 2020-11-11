@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.30DaysToHabit">
         <activity
+            android:name=".ui.archive.ArchiveActivity"
+            android:noHistory="true" />
+        <activity
             android:name=".ui.trace.TracerActivity"
             android:noHistory="true" />
         <activity
