@@ -14,4 +14,6 @@ Open source android application that help users to earn new positive habits in h
 
 5 - RecyclerView
 
+6 - BroadCast Receiver.
+
 
