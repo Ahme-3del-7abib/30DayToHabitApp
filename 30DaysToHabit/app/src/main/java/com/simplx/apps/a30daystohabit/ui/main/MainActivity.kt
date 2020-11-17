@@ -15,6 +15,7 @@ import com.simplx.apps.a30daystohabit.factory.FactoryViewModel
 import com.simplx.apps.a30daystohabit.model.HabitTracerViewModel
 import com.simplx.apps.a30daystohabit.pojo.Days
 import com.simplx.apps.a30daystohabit.pojo.Habit
+import com.simplx.apps.a30daystohabit.reminder.AlarmScheduler
 import com.simplx.apps.a30daystohabit.ui.add.AddHabitActivity
 import com.simplx.apps.a30daystohabit.ui.archive.ArchiveActivity
 import com.simplx.apps.a30daystohabit.ui.trace.TracerActivity
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
 
             startActivity(
                 Intent(this, AddHabitActivity::class.java)
-                    .putExtra("Button", "add")
             )
         }
 
@@ -110,6 +110,7 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
         val builder = AlertDialog
             .Builder(this)
             .setTitle("Delete this habit ?")
+            .setCancelable(false)
             .setItems(options) { _, which ->
 
                 if (which == 0) {
@@ -117,6 +118,7 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
                     val position = viewHolder.adapterPosition
                     val habit: Habit = adapter.getHabitByPosition(position)
 
+                    habit.ID?.let { AlarmScheduler.cancelAlarm(this, it) }
                     habit.ID?.let { viewModel.deleteHabit(it) }
                     HabitUtils.showToast(applicationContext, "Habit Deleted.")
                     adapter.notifyDataSetChanged()
@@ -135,6 +137,7 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
 
         val id: Int = adapter.getHabitByPosition(position).ID!!
         val name: String = adapter.getHabitByPosition(position).name
+        val notify: String = adapter.getHabitByPosition(position).notification
 
         var intent: Intent = Intent(this, TracerActivity::class.java)
         intent.putExtra("id", id)

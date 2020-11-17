@@ -26,7 +26,27 @@ class HabitUtils {
             return Typeface.createFromAsset(context.assets, "fonts/fontfamily.ttf")
         }
 
-        fun getSuccessDay(dayName: String, currentDay: Days, currentTv: String): Days? {
+        fun formatTime(hour: Int, minute: Int): String? {
+
+            var mTime = if (minute < 10) {
+                "$hour:0$minute"
+            } else {
+                if (hour == 0) {
+                    "$hour 0:$minute"
+                } else {
+                    "$hour:$minute"
+                }
+            }
+            return mTime
+        }
+
+
+        fun getSuccessDay(
+            dayName: String,
+            currentDay: Days,
+            currentTv: String,
+            bonus: Double
+        ): Days? {
             var days: Days
 
             when (dayName) {
@@ -64,7 +84,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -104,7 +124,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -144,7 +164,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -184,7 +204,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -224,7 +244,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -264,7 +284,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -304,7 +324,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -344,7 +364,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -384,7 +404,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -424,7 +444,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -464,7 +484,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -504,7 +524,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -544,7 +564,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -584,7 +604,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -624,7 +644,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -664,7 +684,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -704,7 +724,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -744,7 +764,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -784,7 +804,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -824,7 +844,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -864,7 +884,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -904,7 +924,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -944,7 +964,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -984,7 +1004,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -1024,7 +1044,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -1064,7 +1084,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -1104,7 +1124,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -1144,7 +1164,7 @@ class HabitUtils {
                         day_twenty_eight = "success",
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -1184,7 +1204,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = "success",
                         day_thirty = currentDay.day_thirty,
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv
@@ -1224,7 +1244,7 @@ class HabitUtils {
                         day_twenty_eight = currentDay.day_twenty_eight,
                         day_twenty_nine = currentDay.day_twenty_nine,
                         day_thirty = "success",
-                        progress = currentDay.progress + 3.6,
+                        progress = currentDay.progress + bonus,
                         successDays = currentDay.successDays + 1,
                         failedDays = currentDay.failedDays,
                         currentDay = currentTv

@@ -1,6 +1,5 @@
 package com.simplx.apps.a30daystohabit.ui.add
 
-
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Intent
@@ -16,6 +15,7 @@ import com.simplx.apps.a30daystohabit.factory.FactoryViewModel
 import com.simplx.apps.a30daystohabit.model.HabitTracerViewModel
 import com.simplx.apps.a30daystohabit.pojo.Days
 import com.simplx.apps.a30daystohabit.pojo.Habit
+import com.simplx.apps.a30daystohabit.reminder.AlarmScheduler
 import com.simplx.apps.a30daystohabit.ui.main.MainActivity
 import com.simplx.apps.a30daystohabit.utils.HabitUtils
 import kotlinx.android.synthetic.main.activity_add_habit.*
@@ -24,10 +24,13 @@ import java.util.*
 class AddHabitActivity : AppCompatActivity() {
 
     lateinit var viewModel: HabitTracerViewModel
+
+    private var mTime: String = "000000"
+    private var mHour: Int? = null
+    private var mMinute: Int? = null
+
     private lateinit var checked: RadioButton
     private var notification: String = "No"
-    private var time: String = "0000"
-    var saveBtn: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,70 +44,74 @@ class AddHabitActivity : AppCompatActivity() {
             onRadioButtonClicked(notification)
         })
 
-        saveBtn_Id.setOnClickListener {
-
-            if (notification == "Yes") {
-                time = time_id.text.toString()
-            }
-
-            if (habit_name_id.text.isNotEmpty() && habit_name_desc.text.isNotEmpty()) {
-
-                if (saveBtn.equals("add")) {
-                    saveHabit()
-                    startActivity(Intent(this, MainActivity::class.java))
-
-                } else if (saveBtn.equals("update")) {
-                    updateHabit()
-                }
-
-            } else {
-                HabitUtils.showToast(this, "Name And Motivation Fields Are Required")
-            }
-        }
-
         if (determine_time_id.visibility == View.VISIBLE) {
             determine_time_id.setOnClickListener {
 
-                val calendar = Calendar.getInstance()
-                val hour: Int = calendar.get(Calendar.HOUR_OF_DAY)
-                val minute: Int = calendar.get(Calendar.MINUTE)
+                determineTime()
+            }
+        }
 
-                val mTimePicker: TimePickerDialog
-                mTimePicker = TimePickerDialog(
-                    this,
-                    OnTimeSetListener { _, selectedHour, selectedMinute ->
-                        if (selectedMinute < 10) {
-                            time = "$selectedHour:0$selectedMinute"
-                            time_id.text = "$selectedHour:0$selectedMinute"
-                        } else {
-                            time = "$selectedHour:$selectedMinute"
-                            time_id.text = "$selectedHour:$selectedMinute"
-                        }
-                    }, hour, minute, false
-                )
-                mTimePicker.show()
+        saveBtn_Id.setOnClickListener {
+            if (habit_name_id.text.isNotEmpty() && habit_name_desc.text.isNotEmpty()) {
+                if (notification == "No") {
+                    saveHabit(notify = "No")
+                } else {
+                    if (time_id.text == "00:00 S") {
+                        HabitUtils.showToast(this, "Determine Notification Time.")
+                    } else {
+                        saveHabit(notify = "Yes")
+                    }
+                }
+            } else {
+                HabitUtils.showToast(this, "Habit Name And Motivation Are Required.")
             }
         }
     }
 
-    private fun saveHabit() {
+    private fun setView() {
+
+        viewModel = ViewModelProviders.of(this, FactoryViewModel(this.application))
+            .get(HabitTracerViewModel::class.java)
+
+        val mCalendar = Calendar.getInstance()
+        mHour = mCalendar.get(Calendar.HOUR_OF_DAY)
+        mMinute = mCalendar.get(Calendar.MINUTE)
+
+        title_toolbar.typeface = HabitUtils.getTypeFace(this)
+        labelTv2.typeface = HabitUtils.getTypeFace(this)
+
+    }
+
+    private fun saveHabit(notify: String) {
 
         val habit: Habit = Habit(
-            name = habit_name_id.text.toString(),
-            desc = habit_name_desc.text.toString(),
+            name = habit_name_id.text.toString().trim(),
+            desc = habit_name_desc.text.toString().trim(),
             notification = notification,
-            time = time
+            time = mTime
         )
 
         viewModel.insertHabit(habit)
         HabitUtils.showToast(this, "Habit Saved.")
 
-        createDaysForThisHabit()
+        createDaysAndSetAlarm(notify)
     }
 
-    private fun createDaysForThisHabit() {
+    private fun createDaysAndSetAlarm(notify: String) {
 
         viewModel.currentHabit?.observe(this, Observer {
+
+            if (notify == "Yes") {
+                AlarmScheduler.setAlarm(
+                    minutes = mMinute,
+                    hours = mHour,
+                    habitName = it.name,
+                    requestHabitId = it.ID!!,
+                    motivationMsg = it.desc,
+                    context = this
+                )
+            }
+
             val day: Days = Days(
                 habit_id = it.ID!!,
                 day_one = "wait",
@@ -147,56 +154,6 @@ class AddHabitActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateHabit() {
-
-        var habit: Habit = Habit(
-            ID = intent.extras?.getInt("id"),
-            name = habit_name_id.text.toString(),
-            desc = habit_name_desc.text.toString(),
-            notification = notification,
-            time = time
-        )
-
-        viewModel.updateHabit(habit)
-        HabitUtils.showToast(this, "Habit Updated.")
-    }
-
-    private fun setView() {
-
-        viewModel = ViewModelProviders.of(this, FactoryViewModel(this.application))
-            .get(HabitTracerViewModel::class.java)
-
-        title_toolbar.typeface = HabitUtils.getTypeFace(this)
-
-        saveBtn = intent.extras?.getString("Button")
-
-        if (saveBtn.equals("add")) {
-
-            saveBtn_Id.text = "SAVE"
-            title_toolbar.text = "Add New Habit"
-
-        } else if (saveBtn.equals("update")) {
-
-            saveBtn_Id.text = "UPDATE"
-            title_toolbar.text = "Update Habit"
-
-            habit_name_id.setText(intent.extras?.getString("name"))
-            habit_name_desc.setText(intent.extras?.getString("desc"))
-
-            if (intent.extras?.getString("notification").equals("Yes")) {
-                yes_radio_id.isChecked = true
-                no_radio_id.isChecked = false
-                time_layout_id.visibility = View.VISIBLE
-                time_id.text = intent.extras?.getString("time")
-
-            } else {
-                time_layout_id.visibility = View.GONE
-                no_radio_id.isChecked = true
-                yes_radio_id.isChecked = false
-            }
-        }
-    }
-
     private fun onRadioButtonClicked(key: String) {
 
         when (key) {
@@ -208,6 +165,28 @@ class AddHabitActivity : AppCompatActivity() {
                 time_layout_id.visibility = View.GONE
             }
         }
+    }
+
+    private fun determineTime() {
+
+        val calendar = Calendar.getInstance()
+        val hour: Int = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute: Int = calendar.get(Calendar.MINUTE)
+
+        val mTimePicker: TimePickerDialog
+        mTimePicker = TimePickerDialog(
+            this,
+            OnTimeSetListener { _, selectedHour, selectedMinute ->
+
+                mMinute = selectedMinute
+                mHour = selectedHour
+
+                time_id.text = HabitUtils.formatTime(selectedHour, selectedMinute)
+                mTime = time_id.text.toString()
+
+            }, hour, minute, false
+        )
+        mTimePicker.show()
     }
 
     override fun onBackPressed() {

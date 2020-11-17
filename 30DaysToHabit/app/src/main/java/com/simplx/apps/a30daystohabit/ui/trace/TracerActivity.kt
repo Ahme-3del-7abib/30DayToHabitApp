@@ -556,11 +556,19 @@ class TracerActivity : AppCompatActivity() {
         currentDay: Days
     ) {
 
+        var bonus: Double = 3.3
         when (dayName) {
 
             "day_one" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_two_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_two_id",
+                        bonus
+                    )!!
+                )
 
                 day_one_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_two_id.setBackgroundResource(R.drawable.current_day_background)
@@ -570,7 +578,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_two" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_three_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_three_id",
+                        bonus
+                    )!!
+                )
 
                 day_two_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_three_id.setBackgroundResource(R.drawable.current_day_background)
@@ -580,7 +595,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_three" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_four_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_four_id",
+                        bonus
+                    )!!
+                )
 
                 day_three_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_four_id.setBackgroundResource(R.drawable.current_day_background)
@@ -590,7 +612,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_four" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_five_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_five_id",
+                        bonus
+                    )!!
+                )
 
                 day_four_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_five_id.setBackgroundResource(R.drawable.current_day_background)
@@ -600,7 +629,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_five" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_six_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_six_id",
+                        bonus
+                    )!!
+                )
 
                 day_five_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_six_id.setBackgroundResource(R.drawable.current_day_background)
@@ -610,7 +646,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_six" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_seven_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_seven_id",
+                        bonus
+                    )!!
+                )
 
                 day_six_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_seven_id.setBackgroundResource(R.drawable.current_day_background)
@@ -620,7 +663,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_seven" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_eight_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_eight_id",
+                        bonus
+                    )!!
+                )
 
                 day_seven_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_eight_id.setBackgroundResource(R.drawable.current_day_background)
@@ -630,7 +680,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_eight" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_nine_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_nine_id",
+                        bonus
+                    )!!
+                )
 
                 day_eight_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_nine_id.setBackgroundResource(R.drawable.current_day_background)
@@ -640,7 +697,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_nine" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "day_ten_id")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "day_ten_id",
+                        bonus
+                    )!!
+                )
 
                 day_nine_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_ten_id.setBackgroundResource(R.drawable.current_day_background)
@@ -654,7 +718,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_eleven_id"
+                        "day_eleven_id",
+                        bonus
                     )!!
                 )
 
@@ -670,7 +735,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_tweleve_id"
+                        "day_tweleve_id",
+                        bonus
                     )!!
                 )
 
@@ -686,7 +752,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_thirteen_id"
+                        "day_thirteen_id",
+                        bonus
                     )!!
                 )
 
@@ -702,7 +769,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_fourteen_id"
+                        "day_fourteen_id",
+                        bonus
                     )!!
                 )
 
@@ -718,7 +786,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_fifteen_id"
+                        "day_fifteen_id",
+                        bonus
                     )!!
                 )
 
@@ -734,7 +803,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_sixteen_id"
+                        "day_sixteen_id",
+                        bonus
                     )!!
                 )
 
@@ -750,7 +820,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_seventeen_id"
+                        "day_seventeen_id",
+                        bonus
                     )!!
                 )
 
@@ -766,7 +837,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_eighteen_id"
+                        "day_eighteen_id",
+                        bonus
                     )!!
                 )
 
@@ -782,7 +854,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_nineteen_id"
+                        "day_nineteen_id",
+                        bonus
                     )!!
                 )
 
@@ -799,7 +872,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_id"
+                        "day_twenty_id",
+                        bonus
                     )!!
                 )
 
@@ -815,7 +889,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_one_id"
+                        "day_twenty_one_id",
+                        bonus
                     )!!
                 )
 
@@ -831,7 +906,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_two_id"
+                        "day_twenty_two_id",
+                        bonus
                     )!!
                 )
 
@@ -847,7 +923,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_three_id"
+                        "day_twenty_three_id",
+                        bonus
                     )!!
                 )
 
@@ -863,7 +940,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_four_id"
+                        "day_twenty_four_id",
+                        bonus
                     )!!
                 )
 
@@ -879,7 +957,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_five_id"
+                        "day_twenty_five_id",
+                        bonus
                     )!!
                 )
 
@@ -895,7 +974,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_six_id"
+                        "day_twenty_six_id",
+                        bonus
                     )!!
                 )
 
@@ -911,7 +991,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_seven_id"
+                        "day_twenty_seven_id",
+                        bonus
                     )!!
                 )
 
@@ -927,7 +1008,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_eight_id"
+                        "day_twenty_eight_id",
+                        bonus
                     )!!
                 )
 
@@ -943,7 +1025,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_twenty_nine_id"
+                        "day_twenty_nine_id",
+                        bonus
                     )!!
                 )
 
@@ -959,7 +1042,8 @@ class TracerActivity : AppCompatActivity() {
                     HabitUtils.getSuccessDay(
                         dayName,
                         currentDay,
-                        "day_thirty_id"
+                        "day_thirty_id",
+                        bonus
                     )!!
                 )
 
@@ -971,7 +1055,14 @@ class TracerActivity : AppCompatActivity() {
 
             "day_thirty" -> {
 
-                viewModel.updateDay(HabitUtils.getSuccessDay(dayName, currentDay, "NOTHING")!!)
+                viewModel.updateDay(
+                    HabitUtils.getSuccessDay(
+                        dayName,
+                        currentDay,
+                        "NOTHING",
+                        bonus
+                    )!!
+                )
 
                 day_thirty_id.setBackgroundResource(R.drawable.day_back_groundgreen)
                 day_thirty_id.isEnabled = false

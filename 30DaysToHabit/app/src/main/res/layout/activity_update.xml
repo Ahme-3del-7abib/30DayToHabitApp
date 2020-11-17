@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.add.AddHabitActivity">
+    tools:context=".ui.update.UpdateActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
@@ -14,12 +14,12 @@
         android:elevation="@dimen/_4sdp">
 
         <TextView
-            android:id="@+id/title_toolbar"
+            android:id="@+id/title_toolbar_update"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/_16sdp"
             android:paddingBottom="@dimen/_16sdp"
-            android:text="Add New Habit"
+            android:text="Update Habit"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
@@ -37,7 +37,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/habit_name_id"
+            android:id="@+id/habit_name_update_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_16sdp"
@@ -47,7 +47,7 @@
             android:textSize="@dimen/_12sdp" />
 
         <EditText
-            android:id="@+id/habit_name_desc"
+            android:id="@+id/habit_desc_update_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_16sdp"
@@ -57,7 +57,7 @@
             android:textSize="@dimen/_12sdp" />
 
         <TextView
-            android:id="@+id/labelTv2"
+            android:id="@+id/labelTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_8sdp"
@@ -72,14 +72,14 @@
             android:layout_marginBottom="@dimen/_16sdp">
 
             <RadioButton
-                android:id="@+id/yes_radio_id"
+                android:id="@+id/yes_radio_update_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="Yes" />
 
             <RadioButton
-                android:id="@+id/no_radio_id"
+                android:id="@+id/no_radio_update_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -96,7 +96,7 @@
             android:visibility="gone">
 
             <Button
-                android:id="@+id/determine_time_id"
+                android:id="@+id/determine_time_update_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -110,7 +110,7 @@
                 android:textSize="@dimen/_16sdp" />
 
             <TextView
-                android:id="@+id/time_id"
+                android:id="@+id/time_update_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -126,14 +126,14 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/saveBtn_Id"
+            android:id="@+id/updateBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:backgroundTint="#CD5C5C"
             android:paddingLeft="@dimen/_20sdp"
             android:paddingRight="@dimen/_20sdp"
-            android:text="Save"
+            android:text="Update"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
