@@ -23,6 +23,7 @@ class AlarmScheduler {
             val manager = AlarmManagerProvider.getAlarmManager(context)
 
             var intent = Intent(context, AlarmBroadCast::class.java)
+
             intent.putExtra("name", habitName)
             intent.putExtra("habit_id", requestHabitId)
             intent.putExtra("motivation", motivationMsg)
@@ -31,7 +32,7 @@ class AlarmScheduler {
 
             hours?.let { calendar.set(Calendar.HOUR_OF_DAY, it) }
             minutes?.let { calendar.set(Calendar.MINUTE, it) }
-            calendar.set(Calendar.SECOND, 0)
+            calendar.set(Calendar.SECOND, 10)
 
             val selectedTimestamp = calendar.timeInMillis
 
@@ -67,6 +68,7 @@ class AlarmScheduler {
             )
 
             if (pendingIntent != null) {
+                pendingIntent.cancel()
                 manager?.cancel(pendingIntent)
             }
         }

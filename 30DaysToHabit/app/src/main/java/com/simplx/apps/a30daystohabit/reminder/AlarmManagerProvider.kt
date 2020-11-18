@@ -15,6 +15,7 @@ class AlarmManagerProvider {
             if (sAlarmManager == null) {
                 sAlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             }
+
             return sAlarmManager
         }
     }

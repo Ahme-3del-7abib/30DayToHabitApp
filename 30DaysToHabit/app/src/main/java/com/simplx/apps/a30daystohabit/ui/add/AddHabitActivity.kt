@@ -101,19 +101,28 @@ class AddHabitActivity : AppCompatActivity() {
 
         viewModel.currentHabit?.observe(this, Observer {
 
+            val cHabit: Habit? = it
+
             if (notify == "Yes") {
-                AlarmScheduler.setAlarm(
-                    minutes = mMinute,
-                    hours = mHour,
-                    habitName = it.name,
-                    requestHabitId = it.ID!!,
-                    motivationMsg = it.desc,
-                    context = this
-                )
+                if (cHabit != null) {
+                    AlarmScheduler.setAlarm(
+                        minutes = mMinute,
+                        hours = mHour,
+                        habitName = cHabit.name,
+                        requestHabitId = cHabit.ID!!,
+                        motivationMsg = cHabit.desc,
+                        context = this
+                    )
+                } else {
+                    HabitUtils.showToast(
+                        this,
+                        "Error is Happened, please update your notification time."
+                    )
+                }
             }
 
             val day: Days = Days(
-                habit_id = it.ID!!,
+                habit_id = cHabit?.ID!!,
                 day_one = "wait",
                 day_two = "wait",
                 day_three = "wait",

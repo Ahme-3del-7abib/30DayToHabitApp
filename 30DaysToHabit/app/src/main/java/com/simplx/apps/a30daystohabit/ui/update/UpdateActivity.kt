@@ -112,7 +112,7 @@ class UpdateActivity : AppCompatActivity() {
 
     private fun updateHabit(notify: String) {
 
-        if (notification == "Yes") {
+        if (notify == "Yes") {
             updateAlarm()
         }
 

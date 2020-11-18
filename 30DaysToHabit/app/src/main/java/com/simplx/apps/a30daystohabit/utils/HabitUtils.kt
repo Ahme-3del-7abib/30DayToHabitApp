@@ -18,7 +18,7 @@ class HabitUtils {
 
         fun setAnimation(view: View) {
             val animation: AlphaAnimation = AlphaAnimation(0.0f, 1.0f)
-            animation.duration = 1500
+            animation.duration = 950
             view.startAnimation(animation)
         }
 
@@ -28,7 +28,7 @@ class HabitUtils {
 
         fun formatTime(hour: Int, minute: Int): String? {
 
-            var mTime = if (minute < 10) {
+            val mTime = if (minute < 10) {
                 "$hour:0$minute"
             } else {
                 if (hour == 0) {

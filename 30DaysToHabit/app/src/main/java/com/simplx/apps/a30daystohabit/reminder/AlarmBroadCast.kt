@@ -18,9 +18,9 @@ class AlarmBroadCast : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
 
         val bundle = intent!!.extras
-        val habitName = bundle!!.getString("name")
-        val habitMsg = bundle!!.getString("motivation")
-        val habitId = bundle!!.getInt("habit_id")
+        val habitName = bundle?.getString("name")
+        val habitMsg = bundle?.getString("motivation")
+        val habitId = bundle?.getInt("habit_id")
 
         // -- When Click on Notification
         val intent1 = Intent(context, NotificationMessageActivity::class.java)
@@ -31,12 +31,17 @@ class AlarmBroadCast : BroadcastReceiver() {
 
         // -- Build Notification
         val pendingIntent =
-            PendingIntent.getActivity(context, habitId, intent1, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getActivity(
+                context,
+                habitId!!,
+                intent1,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
 
         val notificationManager =
             context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val mBuilder = NotificationCompat.Builder(context!!, "notify_001")
+        val mBuilder = NotificationCompat.Builder(context, "notify_001")
 
         val contentView =
             RemoteViews(context.packageName, R.layout.notification_layout)
@@ -44,10 +49,9 @@ class AlarmBroadCast : BroadcastReceiver() {
         contentView.setTextViewText(R.id.habit_notify_id, habitName)
         contentView.setImageViewResource(R.id.image, R.mipmap.ic_launcher)
 
-        mBuilder.setSmallIcon(R.mipmap.ic_launcher)
+        mBuilder.setSmallIcon(R.drawable.ic_baseline_alarm_on_24)
         mBuilder.setAutoCancel(true)
         mBuilder.setOngoing(true)
-
 
         mBuilder.priority = Notification.PRIORITY_HIGH
         mBuilder.setOnlyAlertOnce(true)
@@ -67,7 +71,6 @@ class AlarmBroadCast : BroadcastReceiver() {
         }
 
         val notification = mBuilder.build()
-        notificationManager.notify(habitId, notification)
+        notificationManager.notify(99, notification)
     }
-
 }
