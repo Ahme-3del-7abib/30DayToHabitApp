@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:paddingTop="@dimen/_16sdp"
             android:paddingBottom="@dimen/_16sdp"
-            android:text="Add New Habit"
+            android:text="@string/add_new_habit"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_8sdp"
-            android:text="Do you need notify you to start your habit ? "
+            android:text="@string/title"
             android:textColor="#CD5C5C"
             android:textSize="@dimen/_16sdp" />
 

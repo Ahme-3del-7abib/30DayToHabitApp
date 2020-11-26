@@ -16,6 +16,7 @@ import com.simplx.apps.a30daystohabit.pojo.Habit
 import com.simplx.apps.a30daystohabit.ui.add.AddHabitActivity
 import com.simplx.apps.a30daystohabit.ui.update.UpdateActivity
 import com.simplx.apps.a30daystohabit.utils.HabitUtils
+import com.simplx.apps.a30daystohabit.utils.getTypeFace
 
 class HabitAdapter(
     private val onHabitClickListener: OnHabitClickListener,
@@ -49,7 +50,7 @@ class HabitAdapter(
         holder.title?.text = habitList[position].name
         holder.desc?.text = habitList[position].desc
 
-        holder.title?.typeface = HabitUtils.getTypeFace(context)
+        holder.title?.typeface = context.getTypeFace()
 
         holder.settingBtn?.setOnClickListener {
 

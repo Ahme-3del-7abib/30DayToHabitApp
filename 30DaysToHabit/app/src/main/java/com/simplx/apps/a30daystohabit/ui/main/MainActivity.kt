@@ -6,33 +6,43 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.simplx.apps.a30daystohabit.R
-import com.simplx.apps.a30daystohabit.factory.FactoryViewModel
-import com.simplx.apps.a30daystohabit.model.HabitTracerViewModel
-import com.simplx.apps.a30daystohabit.pojo.Days
 import com.simplx.apps.a30daystohabit.pojo.Habit
 import com.simplx.apps.a30daystohabit.reminder.AlarmScheduler
 import com.simplx.apps.a30daystohabit.ui.add.AddHabitActivity
 import com.simplx.apps.a30daystohabit.ui.archive.ArchiveActivity
 import com.simplx.apps.a30daystohabit.ui.trace.TracerActivity
 import com.simplx.apps.a30daystohabit.utils.HabitUtils
+import com.simplx.apps.a30daystohabit.utils.getTypeFace
+import com.simplx.apps.a30daystohabit.utils.showToast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.Serializable
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
 
     private lateinit var adapter: HabitAdapter
-    private lateinit var viewModel: HabitTracerViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setView()
+        title_toolbar.typeface = this.getTypeFace()
+
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        adapter = HabitAdapter(this, this)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = adapter
+
+        loadHabits()
+        setUpSwipe()
+
 
         add_habit.setOnClickListener {
 
@@ -46,20 +56,10 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
         }
     }
 
-    private fun setView() {
-
-        title_toolbar.typeface = HabitUtils.getTypeFace(this)
-
-        viewModel = ViewModelProviders.of(this, FactoryViewModel(this.application))
-            .get(HabitTracerViewModel::class.java)
-
-        adapter = HabitAdapter(this, this)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = adapter
-
-        loadHabits()
-        setUpSwipe()
-
+    override fun onStart() {
+        super.onStart()
+        HabitUtils.createFakeAlarm(this)
+        HabitUtils.cancelFakeAlarm(this)
     }
 
     private fun loadHabits() {
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
 
         val builder = AlertDialog
             .Builder(this)
-            .setTitle("Delete this habit ?")
+            .setTitle(resources.getString(R.string.delete_msg))
             .setCancelable(false)
             .setItems(options) { _, which ->
 
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
 
                     habit.ID?.let { AlarmScheduler.cancelAlarm(this, it) }
                     habit.ID?.let { viewModel.deleteHabit(it) }
-                    HabitUtils.showToast(applicationContext, "Habit Deleted.")
+                    this.showToast(resources.getString(R.string.confirm_delete))
                     adapter.notifyDataSetChanged()
                 }
 
@@ -137,7 +137,6 @@ class MainActivity : AppCompatActivity(), HabitAdapter.OnHabitClickListener {
 
         val id: Int = adapter.getHabitByPosition(position).ID!!
         val name: String = adapter.getHabitByPosition(position).name
-        val notify: String = adapter.getHabitByPosition(position).notification
 
         var intent: Intent = Intent(this, TracerActivity::class.java)
         intent.putExtra("id", id)

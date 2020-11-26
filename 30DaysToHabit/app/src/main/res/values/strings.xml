@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">30 Days To Habit</string>
+
+    <string name="determine_time">Determine Notification Time.</string>
+    <string name="enter_all_fields">Habit Name And Motivation Are Required.</string>
+    <string name="habit_saved">Habit Saved.</string>
+    <string name="habit_updated">Habit Updated.</string>
+
+    <string name="Save">Save</string>
+    <string name="update_habit">Update Habit</string>
+    <string name="Archive">Archive</string>
+    <string name="empty_arc">You Archive Is Empty !!</string>
+    <string name="update">Update</string>
+    <string name="add_new_habit">Add New Habit</string>
+    <string name="title">Do you need notify you to start your habit ? </string>
+
+    <string name="wait_msg">Please wait to determine your notification time.</string>
+    <string name="error">Error Happened.</string>
+    <string name="delete_msg">Delete this habit ?</string>
+
+    <string name="confirm_delete">Habit Deleted.</string>
+    <string name="confirm_archive">Habit Archived.</string>
+    <string name="confirm_finished">Finished this habit today ?</string>
+
+    <string name="id">id</string>
+    <string name="name">name</string>
+    <string name="motivation">motivation</string>
+    <string name="desc">desc</string>
+    <string name="notification">notification</string>
+    <string name="time">time</string>
+
+    <string name="finished">FINISHED</string>
+    <string name="success">SUCCESS</string>
+    <string name="failed">FAILED</string>
+
 </resources>

@@ -7,29 +7,31 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.simplx.apps.a30daystohabit.R
-import com.simplx.apps.a30daystohabit.factory.FactoryViewModel
-import com.simplx.apps.a30daystohabit.model.HabitTracerViewModel
 import com.simplx.apps.a30daystohabit.pojo.Habit
 import com.simplx.apps.a30daystohabit.reminder.AlarmScheduler
 import com.simplx.apps.a30daystohabit.ui.main.MainActivity
 import com.simplx.apps.a30daystohabit.utils.HabitUtils
+import com.simplx.apps.a30daystohabit.utils.getTypeFace
+import com.simplx.apps.a30daystohabit.utils.showToast
+import com.simplx.apps.a30daystohabit.utils.startUiAnimation
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_update.*
 import kotlinx.android.synthetic.main.activity_update.radio_group_id
 import kotlinx.android.synthetic.main.activity_update.time_layout_id
 import java.util.*
 
+@AndroidEntryPoint
 class UpdateActivity : AppCompatActivity() {
 
-
-    lateinit var viewModel: HabitTracerViewModel
+    lateinit var viewModel: UpdateViewModel
     private lateinit var checked: RadioButton
 
     private var habitId: Int? = null
     private var habitName: String? = null
     private var habitDesc: String? = null
-    private var notification: String? = null
+    private var notification: Boolean? = null
     private var time: String? = null
 
     private var mHour: Int? = null
@@ -39,62 +41,17 @@ class UpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update)
 
-        getIntentData()
+        viewModel = ViewModelProvider(this).get(UpdateViewModel::class.java)
 
-        setView()
+        habitId = intent.extras?.getInt(resources.getString(R.string.id))
+        habitName = intent.extras?.getString(resources.getString(R.string.name))
+        habitDesc = intent.extras?.getString(resources.getString(R.string.desc))
+        notification = intent.extras?.getBoolean(resources.getString(R.string.notification))
+        time = intent.extras?.getString(resources.getString(R.string.time))
 
-        radio_group_id.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { _, checkedId ->
-            checked = findViewById(checkedId)
-            notification = checked.text.toString()
-            onRadioButtonClicked(notification)
-        })
+        this.showToast(" id = $habitId")
 
-        if (determine_time_update_id.visibility == View.VISIBLE) {
-            determine_time_update_id.setOnClickListener {
-
-                determineTime()
-            }
-        }
-
-        updateBtn.setOnClickListener {
-            if (habit_name_update_id.text.isNotEmpty() && habit_desc_update_id.text.isNotEmpty()) {
-                if (notification == "No") {
-                    AlarmScheduler.cancelAlarm(context = this, requestHabitId = habitId!!)
-                    updateHabit(notify = "No")
-                } else {
-                    if (time_update_id.text == time) {
-                        updateHabit(notify = "No")
-                    } else {
-                        if (time_update_id.text == "00:00 S") {
-                            HabitUtils.showToast(this, "Determine Notification Time.")
-                        } else {
-                            updateHabit(notify = "Yes")
-                        }
-                    }
-                }
-            } else {
-                HabitUtils.showToast(this, "Habit Name And Motivation Are Required.")
-            }
-        }
-    }
-
-    private fun getIntentData() {
-        habitId = intent.extras?.getInt("id")
-        habitName = intent.extras?.getString("name")
-        habitDesc = intent.extras?.getString("desc")
-        notification = intent.extras?.getString("notification")
-        time = intent.extras?.getString("time")
-    }
-
-    private fun setView() {
-
-        viewModel = ViewModelProviders.of(this, FactoryViewModel(this.application))
-            .get(HabitTracerViewModel::class.java)
-
-        habit_name_update_id.setText(habitName)
-        habit_desc_update_id.setText(habitDesc)
-
-        if (notification == "Yes") {
+        if (notification!!) {
             yes_radio_update_id.isChecked = true
             no_radio_update_id.isChecked = false
             time_layout_id.visibility = View.VISIBLE
@@ -106,40 +63,81 @@ class UpdateActivity : AppCompatActivity() {
             yes_radio_update_id.isChecked = false
         }
 
-        title_toolbar_update.typeface = HabitUtils.getTypeFace(this)
-        labelTv.typeface = HabitUtils.getTypeFace(this)
-    }
+        habit_name_update_id.setText(habitName)
+        habit_desc_update_id.setText(habitDesc)
 
-    private fun updateHabit(notify: String) {
+        title_toolbar_update.typeface = this.getTypeFace()
+        labelTv.typeface = this.getTypeFace()
 
-        if (notify == "Yes") {
-            updateAlarm()
+        radio_group_id.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { _, checkedId ->
+            checked = findViewById(checkedId)
+            val radioButtonName = checked.text.toString()
+            onRadioButtonClicked(radioButtonName)
+        })
+
+        if (determine_time_update_id.visibility == View.VISIBLE) {
+            determine_time_update_id.setOnClickListener {
+
+                determineTime()
+            }
         }
 
-        var habit: Habit = Habit(
-            ID = habitId,
-            name = habit_name_update_id.text.toString().trim(),
-            desc = habit_desc_update_id.text.toString().trim(),
-            notification = notification!!,
-            time = time!!
-        )
+        updateBtn.setOnClickListener {
+            if (habit_name_update_id.text.isNotEmpty() && habit_desc_update_id.text.isNotEmpty()) {
+                if (notification!!) {
+                    if (time_update_id.text == time) {
+                        updateHabit()
+                    } else {
+                        if (time_update_id.text == "00:00 S") {
+                            this.showToast(resources.getString(R.string.determine_time))
+                        } else {
+                            updateHabit()
+                        }
+                    }
+                } else {
+                    AlarmScheduler.cancelAlarm(context = this, requestHabitId = habitId!!)
+                    updateHabit()
+                }
+            } else {
+                this.showToast(resources.getString(R.string.enter_all_fields))
+            }
+        }
+    }
 
-        viewModel.updateHabit(habit)
-        HabitUtils.showToast(this, "Habit Updated.")
+    private fun updateHabit() {
+
+        val habit: Habit? = habitId?.let {
+            Habit(
+                ID = it,
+                name = habit_name_update_id.text.toString().trim(),
+                desc = habit_desc_update_id.text.toString().trim(),
+                notification = notification!!,
+                time = time!!
+            )
+        }
+
+        habit?.let { viewModel.updateHabit(it) }
+        this.showToast(resources.getString(R.string.habit_updated))
+
+        if (notification!!) {
+            updateAlarm()
+        }
     }
 
     private fun updateAlarm() {
 
-        AlarmScheduler.cancelAlarm(context = this, requestHabitId = habitId!!)
+        habitId?.let { AlarmScheduler.cancelAlarm(context = this, requestHabitId = it) }
 
-        AlarmScheduler.setAlarm(
-            minutes = mMinute,
-            hours = mHour,
-            habitName = habit_name_update_id.text.toString().trim(),
-            requestHabitId = habitId!!,
-            motivationMsg = habit_desc_update_id.text.toString().trim(),
-            context = this
-        )
+        habitId?.let {
+            AlarmScheduler.setAlarm(
+                minutes = mMinute,
+                hours = mHour,
+                habitName = habit_name_update_id.text.toString().trim(),
+                requestHabitId = it,
+                motivationMsg = habit_desc_update_id.text.toString().trim(),
+                context = this
+            )
+        }
     }
 
     private fun determineTime() {
@@ -169,10 +167,12 @@ class UpdateActivity : AppCompatActivity() {
         when (key) {
             "Yes" -> {
                 time_layout_id.visibility = View.VISIBLE
-                HabitUtils.setAnimation(time_layout_id)
+                time_layout_id.startUiAnimation()
+                notification = true
             }
             "No" -> {
                 time_layout_id.visibility = View.GONE
+                notification = false
             }
         }
     }

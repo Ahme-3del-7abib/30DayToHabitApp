@@ -18,7 +18,7 @@ data class Habit(
     val desc: String,
 
     @ColumnInfo(name = "notification")
-    val notification: String,
+    val notification: Boolean,
 
     @ColumnInfo(name = "time")
     val time: String

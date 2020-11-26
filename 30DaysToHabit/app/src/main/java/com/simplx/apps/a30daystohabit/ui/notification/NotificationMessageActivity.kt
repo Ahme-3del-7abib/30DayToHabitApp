@@ -14,9 +14,9 @@ class NotificationMessageActivity : AppCompatActivity() {
 
         val bundle = intent.extras
 
-        var habitId = bundle!!.getInt("habit_id")
-        var habitName = bundle!!.getString("name")
-        var motivation = bundle!!.getString("motivation")
+        val habitId = bundle?.getInt("id")
+        val habitName = bundle?.getString("name")
+        val motivation = bundle?.getString("motivation")
 
         habit_name_motivation_id.text = habitName
         habit_motivation_id.text = motivation
