@@ -12,8 +12,10 @@ Open source android application that help users to earn new positive habits, and
 
 4 - Room
 
-5 - RecyclerView
+5 - Hilt
 
-6 - BroadCast Receiver.
+7 - RecyclerView
+
+8 - BroadCast Receiver.
 
 
