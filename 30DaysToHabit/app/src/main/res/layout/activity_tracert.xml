@@ -34,7 +34,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
-                    android:background="@drawable/current_day_background"
+                    android:background="@drawable/day_background_white"
                     android:gravity="center"
                     android:text="1"
                     android:textColor="@android:color/black"
@@ -600,5 +600,16 @@
 
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/coachFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:backgroundTint="@android:color/white"
+        android:src="@drawable/ic_baseline_check_24"
+        app:borderWidth="0dp" />
 
 </RelativeLayout>

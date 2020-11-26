@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import androidx.core.content.ContextCompat
 import java.text.ParseException
 import java.util.*
 
@@ -22,17 +23,17 @@ class AlarmScheduler {
 
             val manager = AlarmManagerProvider.getAlarmManager(context)
 
-            var intent = Intent(context, AlarmBroadCast::class.java)
+            val intent = Intent(context, AlarmBroadCast::class.java)
 
             intent.putExtra("name", habitName)
-            intent.putExtra("habit_id", requestHabitId)
+            intent.putExtra("id", requestHabitId)
             intent.putExtra("motivation", motivationMsg)
 
             val calendar: Calendar = Calendar.getInstance()
 
             hours?.let { calendar.set(Calendar.HOUR_OF_DAY, it) }
             minutes?.let { calendar.set(Calendar.MINUTE, it) }
-            calendar.set(Calendar.SECOND, 10)
+            calendar.set(Calendar.SECOND, 0)
 
             val selectedTimestamp = calendar.timeInMillis
 

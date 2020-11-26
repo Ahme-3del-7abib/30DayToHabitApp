@@ -7,42 +7,34 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.simplx.apps.a30daystohabit.R
-import com.simplx.apps.a30daystohabit.factory.FactoryViewModel
-import com.simplx.apps.a30daystohabit.model.HabitTracerViewModel
-import com.simplx.apps.a30daystohabit.pojo.Habit
-import com.simplx.apps.a30daystohabit.ui.main.HabitAdapter
 import com.simplx.apps.a30daystohabit.ui.main.MainActivity
-import com.simplx.apps.a30daystohabit.utils.HabitUtils
+import com.simplx.apps.a30daystohabit.utils.getTypeFace
+import com.simplx.apps.a30daystohabit.utils.showToast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_archive.*
-import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class ArchiveActivity : AppCompatActivity() {
 
     private lateinit var adapter: ArchiveAdapter
-    private lateinit var viewModel: HabitTracerViewModel
+    private lateinit var viewModel: ArchiveViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_archive)
 
-        setView()
-    }
-
-    private fun setView() {
-        arch_tv.typeface = HabitUtils.getTypeFace(this)
-        title_Archive_toolbar.typeface = HabitUtils.getTypeFace(this)
-
-        viewModel = ViewModelProvider(this, FactoryViewModel(this.application))
-            .get(HabitTracerViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ArchiveViewModel::class.java)
 
         adapter = ArchiveAdapter(this)
         archiveRecycler.layoutManager = LinearLayoutManager(this)
         archiveRecycler.adapter = adapter
+
+        arch_tv.typeface = this.getTypeFace()
+        title_Archive_toolbar.typeface = this.getTypeFace()
 
         loadHabits()
         setUpSwipe()
@@ -94,7 +86,7 @@ class ArchiveActivity : AppCompatActivity() {
 
         val builder = AlertDialog
             .Builder(this)
-            .setTitle("Delete this habit From Archive ?")
+            .setTitle(resources.getString(R.string.delete_msg))
             .setItems(options) { _, which ->
 
                 if (which == 0) {
@@ -103,7 +95,7 @@ class ArchiveActivity : AppCompatActivity() {
                     val habit = adapter.getHabitByPosition(position)
 
                     habit.id?.let { viewModel.deleteArchivedHabit(it) }
-                    HabitUtils.showToast(applicationContext, "Habit Deleted.")
+                    this.showToast(resources.getString(R.string.confirm_delete))
                     adapter.notifyDataSetChanged()
                 }
 

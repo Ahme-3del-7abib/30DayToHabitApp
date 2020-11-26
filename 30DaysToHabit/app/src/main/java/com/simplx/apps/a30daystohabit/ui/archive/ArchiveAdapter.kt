@@ -13,6 +13,7 @@ import com.simplx.apps.a30daystohabit.pojo.ArchivedHabit
 import com.simplx.apps.a30daystohabit.pojo.Habit
 import com.simplx.apps.a30daystohabit.ui.add.AddHabitActivity
 import com.simplx.apps.a30daystohabit.utils.HabitUtils
+import com.simplx.apps.a30daystohabit.utils.getTypeFace
 
 class ArchiveAdapter(private val context: Context) :
     RecyclerView.Adapter<ArchiveAdapter.ArchiveHabitsViewHolder>() {
@@ -41,8 +42,8 @@ class ArchiveAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: ArchiveHabitsViewHolder, position: Int) {
         holder.title?.text = archiveList[position].name
-        holder.title?.typeface = HabitUtils.getTypeFace(context)
-        holder.achTV?.typeface = HabitUtils.getTypeFace(context)
+        holder.title?.typeface = context.getTypeFace()
+        holder.achTV?.typeface = context.getTypeFace()
 
         holder.progress?.text = archiveList[position].achievement.toInt().toString()
         holder.successDays?.text = archiveList[position].successDays.toString()

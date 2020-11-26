@@ -26,15 +26,15 @@
                 android:layout_weight="1"
                 android:paddingTop="@dimen/_16sdp"
                 android:paddingBottom="@dimen/_16sdp"
-                android:text="30 Days To Habit"
+                android:text="@string/app_name"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_20sdp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/arch_Btn"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/_16sdp"
                 android:src="@drawable/ic_baseline_archive_24" />

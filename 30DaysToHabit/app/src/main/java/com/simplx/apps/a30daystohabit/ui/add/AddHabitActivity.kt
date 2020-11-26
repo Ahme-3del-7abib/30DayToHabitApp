@@ -4,44 +4,52 @@ import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.simplx.apps.a30daystohabit.R
-import com.simplx.apps.a30daystohabit.factory.FactoryViewModel
-import com.simplx.apps.a30daystohabit.model.HabitTracerViewModel
-import com.simplx.apps.a30daystohabit.pojo.Days
 import com.simplx.apps.a30daystohabit.pojo.Habit
 import com.simplx.apps.a30daystohabit.reminder.AlarmScheduler
 import com.simplx.apps.a30daystohabit.ui.main.MainActivity
-import com.simplx.apps.a30daystohabit.utils.HabitUtils
+import com.simplx.apps.a30daystohabit.utils.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_add_habit.*
 import java.util.*
 
+@Suppress("DEPRECATION")
+@AndroidEntryPoint
 class AddHabitActivity : AppCompatActivity() {
 
-    lateinit var viewModel: HabitTracerViewModel
+    lateinit var viewModel: HabitsViewModel
 
     private var mTime: String = "000000"
     private var mHour: Int? = null
     private var mMinute: Int? = null
 
     private lateinit var checked: RadioButton
-    private var notification: String = "No"
+    private var notification: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_habit)
 
-        setView()
+        viewModel = ViewModelProvider(this).get(HabitsViewModel::class.java)
+
+        val mCalendar = Calendar.getInstance()
+        mHour = mCalendar.get(Calendar.HOUR_OF_DAY)
+        mMinute = mCalendar.get(Calendar.MINUTE)
+
+        title_toolbar.typeface = this.getTypeFace()
+        labelTv2.typeface = this.getTypeFace()
 
         radio_group_id.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { _, checkedId ->
             checked = findViewById(checkedId)
-            notification = checked.text.toString()
-            onRadioButtonClicked(notification)
+            val radioButtonName = checked.text.toString()
+            onRadioButtonClicked(radioButtonName)
         })
 
         if (determine_time_id.visibility == View.VISIBLE) {
@@ -53,36 +61,23 @@ class AddHabitActivity : AppCompatActivity() {
 
         saveBtn_Id.setOnClickListener {
             if (habit_name_id.text.isNotEmpty() && habit_name_desc.text.isNotEmpty()) {
-                if (notification == "No") {
-                    saveHabit(notify = "No")
-                } else {
+                if (notification) {
+                    // CHECK TIME IS DETERMINED OR NOT.
                     if (time_id.text == "00:00 S") {
-                        HabitUtils.showToast(this, "Determine Notification Time.")
+                        this.showToast(resources.getString(R.string.determine_time))
                     } else {
-                        saveHabit(notify = "Yes")
+                        saveHabit()
                     }
+                } else {
+                    saveHabit()
                 }
             } else {
-                HabitUtils.showToast(this, "Habit Name And Motivation Are Required.")
+                this.showToast(resources.getString(R.string.enter_all_fields))
             }
         }
     }
 
-    private fun setView() {
-
-        viewModel = ViewModelProviders.of(this, FactoryViewModel(this.application))
-            .get(HabitTracerViewModel::class.java)
-
-        val mCalendar = Calendar.getInstance()
-        mHour = mCalendar.get(Calendar.HOUR_OF_DAY)
-        mMinute = mCalendar.get(Calendar.MINUTE)
-
-        title_toolbar.typeface = HabitUtils.getTypeFace(this)
-        labelTv2.typeface = HabitUtils.getTypeFace(this)
-
-    }
-
-    private fun saveHabit(notify: String) {
+    private fun saveHabit() {
 
         val habit: Habit = Habit(
             name = habit_name_id.text.toString().trim(),
@@ -92,86 +87,45 @@ class AddHabitActivity : AppCompatActivity() {
         )
 
         viewModel.insertHabit(habit)
-        HabitUtils.showToast(this, "Habit Saved.")
+        this.showToast(resources.getString(R.string.habit_saved))
 
-        createDaysAndSetAlarm(notify)
+        if (notification) {
+            this.showDelay(5000, resources.getString(R.string.wait_msg))
+            Handler().postDelayed(this::setAlarm, 5000)
+        }
     }
 
-    private fun createDaysAndSetAlarm(notify: String) {
-
-        viewModel.currentHabit?.observe(this, Observer {
-
-            val cHabit: Habit? = it
-
-            if (notify == "Yes") {
-                if (cHabit != null) {
+    private fun setAlarm() {
+        // GET LAST HABIT AND SET ALARM BY IT.
+        viewModel.lastInsertedHabit?.observe(this, Observer { cHabit ->
+            if (cHabit != null) {
+                val lastID: Int? = cHabit.ID
+                lastID?.let {
                     AlarmScheduler.setAlarm(
                         minutes = mMinute,
                         hours = mHour,
                         habitName = cHabit.name,
-                        requestHabitId = cHabit.ID!!,
+                        requestHabitId = it,
                         motivationMsg = cHabit.desc,
                         context = this
                     )
-                } else {
-                    HabitUtils.showToast(
-                        this,
-                        "Error is Happened, please update your notification time."
-                    )
                 }
+            } else {
+                this.showToast(resources.getString(R.string.error))
             }
-
-            val day: Days = Days(
-                habit_id = cHabit?.ID!!,
-                day_one = "wait",
-                day_two = "wait",
-                day_three = "wait",
-                day_four = "wait",
-                day_five = "wait",
-                day_six = "wait",
-                day_seven = "wait",
-                day_eight = "wait",
-                day_nine = "wait",
-                day_ten = "wait",
-                day_eleven = "wait",
-                day_twelve = "wait",
-                day_thirteen = "wait",
-                day_fourteen = "wait",
-                day_fifteen = "wait",
-                day_sixteen = "wait",
-                day_seventeen = "wait",
-                day_eighteen = "wait",
-                day_nineteen = "wait",
-                day_twenty = "wait",
-                day_twenty_one = "wait",
-                day_twenty_two = "wait",
-                day_twenty_three = "wait",
-                day_twenty_four = "wait",
-                day_twenty_five = "wait",
-                day_twenty_six = "wait",
-                day_twenty_seven = "wait",
-                day_twenty_eight = "wait",
-                day_twenty_nine = "wait",
-                day_thirty = "wait",
-                progress = 0.0,
-                successDays = 0,
-                failedDays = 0,
-                currentDay = "day_one_id"
-            )
-
-            viewModel.insertDay(day)
         })
     }
 
     private fun onRadioButtonClicked(key: String) {
-
         when (key) {
             "Yes" -> {
                 time_layout_id.visibility = View.VISIBLE
-                HabitUtils.setAnimation(time_layout_id)
+                time_layout_id.startUiAnimation()
+                notification = true
             }
             "No" -> {
                 time_layout_id.visibility = View.GONE
+                notification = false
             }
         }
     }

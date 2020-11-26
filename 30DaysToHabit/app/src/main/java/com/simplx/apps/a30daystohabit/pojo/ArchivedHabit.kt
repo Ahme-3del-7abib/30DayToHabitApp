@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "archive_table")
 data class ArchivedHabit(
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "arc_habit_id", defaultValue = "0")
     val id: Int? = null,
@@ -14,7 +15,7 @@ data class ArchivedHabit(
     val name: String,
 
     @ColumnInfo(name = "arc_habit_achievement")
-    val achievement: Double,
+    val achievement: Int,
 
     @ColumnInfo(name = "arc_habit_success_days")
     val successDays: Int,
